@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Email support
+    url: mailto:zbcdevo@gmail.com
+    about: Prefer email? Reach out directly instead of opening an issue.
