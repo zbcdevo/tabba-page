@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Privacy Policy - tabba</title>
+<title>Privacy Policy - Tabba</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <style>
   :root {
@@ -25,11 +25,28 @@
     font-family: var(--font);
     line-height: 1.7;
   }
-  .wrap { max-width: 680px; margin: 0 auto; padding: 48px 24px 80px; }
-  .brand { display: flex; align-items: center; gap: 10px; margin-bottom: 32px; }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 24px 24px 80px; }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0 32px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text);
+  }
   .brand img { width: 32px; height: 32px; border-radius: 8px; }
-  .brand span { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; color: var(--accent); }
-  .brand span .accent { color: var(--text2); font-weight: 300; }
+  .brand span { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+  .brand span .accent { color: var(--accent); }
+  .brand span .light { color: var(--text2); font-weight: 300; }
+  nav { display: flex; gap: 20px; align-items: center; }
+  nav a { color: var(--text2); text-decoration: none; font-size: 14px; font-weight: 500; }
+  nav a:hover { color: var(--accent); }
+
   h1 { font-size: 26px; margin: 0 0 4px; }
   .updated { color: var(--text3); font-size: 13px; margin-bottom: 32px; }
   h2 { font-size: 17px; margin: 32px 0 8px; color: var(--accent2); }
@@ -37,72 +54,71 @@
   ul { padding-left: 20px; }
   a { color: var(--accent); }
   .card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 28px; }
-  .footer { margin-top: 32px; text-align: center; font-size: 13px; color: var(--text3); }
+  hr.divider { border: 0; height: 1px; background: var(--border); margin: 48px 0 0; }
+  footer { margin-top: 32px; text-align: center; font-size: 13px; color: var(--text3); line-height: 1.8; }
+  footer a { color: var(--text3); text-decoration: underline; text-decoration-color: var(--border); }
 </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="brand">
-      <img src="assets/icon.png" alt="" />
-      <span>tab<span class="accent">ba</span></span>
-    </div>
+    <header>
+      <a href="index.html" class="brand">
+        <img src="assets/icon.png" alt="tabba logo" />
+        <span><span class="accent">tab</span><span class="light">ba</span></span>
+      </a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="mailto:zbcdevo@gmail.com">Contact</a>
+      </nav>
+    </header>
+
     <div class="card">
       <h1>Privacy Policy</h1>
       <p class="updated">Last updated: July 10, 2026</p>
 
-      <p>tabba ("the app") is developed by Zabba Labs. This policy explains what data
-      the app collects and how it's handled.</p>
+      <p>Tabba ("the app") is developed by Zabba Labs. This policy explains what data
+      the app collects and how it is handled.</p>
 
       <h2>Summary</h2>
-      <p>tabba collects nothing. It has no backend server, no analytics, no
+      <p>Tabba collects no data. It has no backend server, no analytics, no
       advertising SDK, and no user accounts. The app works fully offline.</p>
 
-      <h2>Data storage</h2>
-      <p>All tabs, settings, and preferences you create in tabba are stored
-      <strong>only on your device</strong>, using your browser's/device's local
-      storage. This data:</p>
+      <h2>Data Storage</h2>
+      <p>All tabs, settings, and preferences created in Tabba are stored
+      <strong>only on your device</strong> in local storage. This data:</p>
       <ul>
         <li>Is never transmitted over the internet</li>
-        <li>Is never sent to Zabba Labs or any third party</li>
-        <li>Is never used for advertising or tracking</li>
-        <li>Can be deleted at any time by clearing the app's data or uninstalling it</li>
+        <li>Is never sent to Zabba Labs or third parties</li>
+        <li>Is never used for tracking or advertising</li>
+        <li>Can be deleted anytime by clearing app data or uninstalling</li>
       </ul>
 
-      <h2>Data you export</h2>
-      <p>tabba lets you manually export your tabs as plain text or as
-      <code>.tabba</code> files, or back up your entire library (<code>.tabba</code>
-      backup file). These files are saved to your device or shared via your
-      device's native share sheet. tabba does not upload them anywhere. What you
-      do with an exported file (like sharing it yourself) is outside the app's
-      control.</p>
+      <h2>Exported Files</h2>
+      <p>Tabba lets you export tabs as plain text, <code>.tabba</code> files, or full library backups.
+      These files save directly to your device or system share sheet. Tabba does not upload exported files anywhere.</p>
 
       <h2>Permissions</h2>
-      <p>tabba does not request access to contacts, location, camera, microphone,
-      or any other sensitive device permission. Audio playback uses the Web Audio
-      API, which runs entirely on-device.</p>
+      <p>Tabba does not request permissions for contacts, location, camera, or microphone. Audio playback uses the Web Audio API on your device.</p>
 
-      <h2>In-app purchases (tabba Pro)</h2>
-      <p>If you unlock tabba Pro via Google Play Billing, Google handles the
-      transaction. tabba never sees or stores your payment details. The unlock
-      state is stored locally on your device.</p>
+      <h2>In-app Purchases</h2>
+      <p>If you unlock Tabba Pro through Google Play Billing, Google processes the transaction. Tabba never sees or stores your payment details.</p>
 
-      <h2>Children's privacy</h2>
-      <p>tabba does not knowingly collect any information from anyone, including
-      children, because it does not collect information at all.</p>
+      <h2>Children's Privacy</h2>
+      <p>Tabba does not collect information from anyone, including children.</p>
 
-      <h2>Changes to this policy</h2>
-      <p>If this policy changes, the update will be reflected here with a new
-      "last updated" date. Continued use of the app after a change constitutes
-      acceptance of the updated policy.</p>
+      <h2>Changes to Policy</h2>
+      <p>Any updates to this policy will be posted here with a new date.</p>
 
       <h2>Contact</h2>
       <p>Questions about this policy: <a href="mailto:zbcdevo@gmail.com">zbcdevo@gmail.com</a></p>
     </div>
-    <p class="footer">
-      tabba is part of Zabba Labs.<br />
-      <a href="index.html">Back to tabba home</a> ·
-      <a href="mailto:zbcdevo@gmail.com">zbcdevo@gmail.com</a>
-    </p>
+
+    <hr class="divider" />
+
+    <footer>
+      © <a href="index.html">Tabba</a> · <a href="https://zabbalabs.com" target="_blank" rel="noopener">Zabba Labs</a> · since 2026 · All rights reserved.<br />
+      <a href="index.html">Back to Tabba home</a> · <a href="mailto:zbcdevo@gmail.com">Contact Us</a>
+    </footer>
   </div>
 </body>
 </html>
