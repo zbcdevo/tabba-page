@@ -74,14 +74,16 @@
 
     <div class="card">
       <h1>Privacy Policy</h1>
-      <p class="updated">Last updated: July 10, 2026</p>
+      <p class="updated">Last updated: October 1, 2026</p>
 
       <p>Tabba ("the app") is developed by Zabba Labs. This policy explains what data
       the app collects and how it is handled.</p>
 
       <h2>Summary</h2>
-      <p>Tabba collects no data. It has no backend server, no analytics, no
-      advertising SDK, and no user accounts. The app works fully offline.</p>
+      <p>Tabba still has no user accounts, no advertising SDK, and no analytics.
+      Your tabs, settings, and preferences are stored only on your device, exactly
+      as before. The one addition is optional push notifications on Android, which
+      is covered below — everything else about the app remains fully offline.</p>
 
       <h2>Data Storage</h2>
       <p>All tabs, settings, and preferences created in Tabba are stored
@@ -93,18 +95,45 @@
         <li>Can be deleted anytime by clearing app data or uninstalling</li>
       </ul>
 
+      <h2>Push Notifications (Android)</h2>
+      <p>On Android, Tabba can send you push notifications about app updates, tips,
+      and occasional promotions. This is entirely optional and does not require an
+      account of any kind:</p>
+      <ul>
+        <li>If you allow notifications, your device is given an anonymous push token
+        (via Google Firebase Cloud Messaging) that we store, along with your app
+        version and platform, so we know where to deliver a notification. This
+        token is not linked to your name, email, or any other personal information.</li>
+        <li>You control this from <strong>Settings &gt; Notifications</strong>, with
+        separate switches for app updates/tips and promotions, and from your
+        device's system notification settings at any time.</li>
+        <li>Notifications shown in the app's bell icon are kept only on your device,
+        and are deleted the moment you read them — Tabba does not keep a history of
+        past notifications anywhere.</li>
+        <li>Delivering a notification requires sharing your device's push token with
+        Google (Firebase Cloud Messaging), which acts purely as the delivery
+        mechanism. Google's handling of this data is covered by its own
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">privacy policy</a>.</li>
+        <li>This feature is Android-only. The web version of Tabba does not use
+        push notifications and has no backend of any kind.</li>
+      </ul>
+
       <h2>Exported Files</h2>
       <p>Tabba lets you export tabs as plain text, <code>.tabba</code> files, or full library backups.
       These files save directly to your device or system share sheet. Tabba does not upload exported files anywhere.</p>
 
       <h2>Permissions</h2>
-      <p>Tabba does not request permissions for contacts, location, camera, or microphone. Audio playback uses the Web Audio API on your device.</p>
+      <p>Tabba does not request permissions for contacts, location, camera, or microphone.
+      Audio playback uses the Web Audio API on your device. On Android, Tabba will ask for
+      the notification permission if you choose to enable push notifications (see above).</p>
 
       <h2>In-app Purchases</h2>
       <p>If you unlock Tabba Pro through Google Play Billing, Google processes the transaction. Tabba never sees or stores your payment details.</p>
 
       <h2>Children's Privacy</h2>
-      <p>Tabba does not collect information from anyone, including children.</p>
+      <p>Tabba does not knowingly collect personal information from anyone, including
+      children. The anonymous device token described above is not personal information
+      and is not used for tracking or advertising.</p>
 
       <h2>Changes to Policy</h2>
       <p>Any updates to this policy will be posted here with a new date.</p>
