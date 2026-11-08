@@ -31,315 +31,798 @@
 }
 </script>
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+<link rel="preload" as="image" type="image/webp" href="assets/screens/hero.webp"
+      imagesrcset="assets/screens/hero-480.webp 480w, assets/screens/hero.webp 900w" imagesizes="(max-width: 600px) 70vw, 340px" />
+<script>document.documentElement.className += ' js';</script>
 <style>
   :root {
-    --bg: #f5f7fa;
+    --bg: #f5f8fc;
     --bg2: #ffffff;
-    --bg3: #eef2f8;
+    --bg3: #eaf1fa;
     --accent: #3b6ea5;
     --accent2: #2d567f;
-    --text: #1a2233;
-    --text2: #4a5568;
-    --text3: #8090a8;
-    --border: #d0d8e8;
-    --radius: 14px;
-    --font: ui-rounded, 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --accent3: #2bb3d0;
+    --text: #131b2c;
+    --text2: #46536a;
+    --text3: #6b7a93;
+    --border: #d6e0ee;
+    --radius: 18px;
+    --shadow: 0 10px 30px rgba(35, 70, 120, 0.10);
+    --shadow-lg: 0 24px 60px rgba(35, 70, 120, 0.22);
+    --font-head: 'Outfit', ui-rounded, 'SF Pro Rounded', system-ui, sans-serif;
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   }
   * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   body {
-    margin: 0; padding: 0;
-    background: var(--bg); color: var(--text);
+    margin: 0;
+    background: linear-gradient(180deg, #ffffff 0, var(--bg) 520px, #eef4fb 100%);
+    color: var(--text);
     font-family: var(--font);
-    line-height: 1.7;
+    line-height: 1.65;
+    overflow-x: hidden;
   }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 24px 24px 80px; }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: var(--accent); }
+  p, li { color: var(--text2); font-size: 16px; }
+  code { background: var(--bg3); padding: 1px 6px; border-radius: 6px; font-size: .9em; }
+  :focus-visible { outline: 3px solid var(--accent3); outline-offset: 2px; border-radius: 6px; }
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; position: relative; }
+  .skip { position: absolute; left: -999px; top: 8px; background: var(--accent); color: #fff; padding: 8px 14px; border-radius: 8px; z-index: 200; }
+  .skip:focus { left: 8px; }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
 
   /* Header */
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 0 40px;
+  .navbar {
+    position: sticky; top: 0; z-index: 100;
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    background: rgba(255, 255, 255, 0.78);
+    border-bottom: 1px solid rgba(214, 224, 238, 0.8);
   }
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: var(--text);
-  }
-  .brand img { width: 32px; height: 32px; border-radius: 8px; }
-  .brand span { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; }
-  .brand span .accent { color: var(--accent); }
-  .brand span .light { color: var(--text2); font-weight: 300; }
+  .nav-container { display: flex; align-items: center; justify-content: space-between; padding-top: 12px; padding-bottom: 12px; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
+  .brand img { width: 36px; height: 36px; border-radius: 10px; box-shadow: 0 4px 14px rgba(59, 110, 165, 0.35); }
+  .brand .name { font-family: var(--font-head); font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+  .brand .accent { color: var(--accent); }
+  .brand .light { color: var(--text2); font-weight: 500; }
+  .nav-links { display: flex; gap: 22px; align-items: center; }
+  .nav-links a { color: var(--text2); text-decoration: none; font-size: 14.5px; font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: var(--accent); }
+  @media (max-width: 860px) { .nav-links .sec { display: none; } .nav-links { gap: 16px; } }
 
-  nav { display: flex; gap: 20px; align-items: center; }
-  nav a { color: var(--text2); text-decoration: none; font-size: 14px; font-weight: 500; }
-  nav a:hover { color: var(--accent); }
+  /* Buttons */
+  .btn-group { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 24px; border-radius: 14px;
+    font-family: var(--font); font-size: 15px; font-weight: 600; text-decoration: none; cursor: pointer; border: 1px solid transparent;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn .material-symbols-outlined { font-size: 21px; }
+  .btn.primary { background: linear-gradient(135deg, #4a82bf, var(--accent2)); color: #fff; box-shadow: 0 8px 22px rgba(59, 110, 165, 0.38); }
+  .btn.primary:hover { box-shadow: 0 12px 28px rgba(59, 110, 165, 0.5); }
+  .btn.secondary { background: rgba(255, 255, 255, 0.85); color: var(--accent2); border-color: var(--border); }
+  .btn.secondary:hover { background: #fff; box-shadow: var(--shadow); }
+  .btn.bmc { background: #ffdd00; color: #111; font-weight: 700; border-color: rgba(0, 0, 0, 0.08); box-shadow: 0 8px 20px rgba(255, 221, 0, 0.4); }
+  .btn.bmc:hover { background: #ffe94d; box-shadow: 0 12px 26px rgba(255, 221, 0, 0.55); }
+  .btn.sm { padding: 9px 16px; font-size: 14px; border-radius: 12px; }
 
   /* Hero */
-  .hero { text-align: center; margin-bottom: 56px; }
-  .hero h1 { font-size: 32px; font-weight: 800; margin: 0 0 12px; letter-spacing: -0.5px; color: var(--text); }
-  .hero p { font-size: 16px; color: var(--text2); max-width: 540px; margin: 0 auto 28px; }
-  .btn-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .badge {
+  .hero { position: relative; padding: 56px 0 72px; overflow-x: clip; }
+  .blob { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; z-index: 0; opacity: .55; animation: drift 18s ease-in-out infinite alternate; }
+  .blob.b1 { width: 460px; height: 460px; background: #9cc3ee; top: -140px; left: -120px; }
+  .blob.b2 { width: 380px; height: 380px; background: #a8e6f1; top: 120px; right: -100px; animation-delay: -6s; }
+  .blob.b3 { width: 320px; height: 320px; background: #cfd9ff; bottom: -120px; left: 38%; animation-delay: -11s; }
+  @keyframes drift { from { transform: translate(0, 0) scale(1); } to { transform: translate(36px, 24px) scale(1.08); } }
+  .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: center; position: relative; z-index: 1; }
+  .pill {
     display: inline-flex; align-items: center; gap: 8px;
-    padding: 10px 20px; border-radius: 999px;
-    font-size: 14px; font-weight: 600; text-decoration: none;
-    transition: transform 0.15s ease, opacity 0.15s ease;
+    padding: 6px 14px; border-radius: 999px; font-size: 13.5px; font-weight: 600;
+    background: rgba(59, 110, 165, 0.1); border: 1px solid rgba(59, 110, 165, 0.25); color: var(--accent2);
+    margin-bottom: 20px;
   }
-  .badge:hover { transform: translateY(-1px); opacity: 0.95; }
-  .badge.primary { background: var(--accent); color: #fff; }
-  .badge.secondary { background: var(--bg2); color: var(--accent2); border: 1px solid var(--border); }
-  .badge .material-symbols-outlined { font-size: 20px; }
+  .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(59, 110, 165, .55); } 70% { box-shadow: 0 0 0 9px rgba(59, 110, 165, 0); } 100% { box-shadow: 0 0 0 0 rgba(59, 110, 165, 0); } }
+  h1 { font-family: var(--font-head); font-size: clamp(36px, 5.4vw, 60px); line-height: 1.08; letter-spacing: -1.5px; font-weight: 800; margin: 0 0 18px; color: var(--text); }
+  .grad { background: linear-gradient(120deg, var(--accent) 10%, var(--accent3) 90%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+  .lead { font-size: 18px; color: var(--text2); max-width: 540px; margin: 0 0 28px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 26px; padding: 0; list-style: none; }
+  .chips li { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text2); }
+  .chips .material-symbols-outlined { font-size: 19px; color: var(--accent); }
+  .hero-visual { display: flex; justify-content: center; }
+  .hero-card {
+    width: min(340px, 70vw); border-radius: 30px; overflow: hidden; box-shadow: var(--shadow-lg);
+    border: 6px solid #fff; transform: rotate(3deg); animation: float 7s ease-in-out infinite;
+    background: #dfe6ef;
+  }
+  @keyframes float { 0%, 100% { transform: rotate(3deg) translateY(0); } 50% { transform: rotate(3deg) translateY(-12px); } }
+  @media (max-width: 900px) {
+    .hero { padding: 36px 0 56px; }
+    .hero-grid { grid-template-columns: 1fr; text-align: center; }
+    .lead { margin-left: auto; margin-right: auto; }
+    .btn-group, .chips { justify-content: center; }
+  }
 
   /* Sections */
-  section { margin-bottom: 48px; }
-  h2 { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-       color: var(--text3); margin: 0 0 18px; }
-  .card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; }
+  section.block { padding: 64px 0; scroll-margin-top: 70px; }
+  .head { text-align: center; max-width: 640px; margin: 0 auto 38px; }
+  .eyebrow { font-size: 13px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--accent); margin: 0 0 8px; }
+  h2 { font-family: var(--font-head); font-size: clamp(28px, 3.6vw, 40px); line-height: 1.15; letter-spacing: -0.8px; margin: 0 0 10px; color: var(--text); font-weight: 700; }
+  .head p { margin: 0; font-size: 17px; }
+  h3 { font-family: var(--font-head); }
 
-  /* Features grid */
-  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
-  .feature { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
-  .feature .icon {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 38px; height: 38px; border-radius: 10px;
-    background: var(--bg3); color: var(--accent);
-    margin-bottom: 12px;
+  /* Glass cards */
+  .gcard {
+    background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border); border-radius: var(--radius); padding: 24px;
+    position: relative; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
   }
-  .feature .icon .material-symbols-outlined { font-size: 22px; }
-  .feature h3 { font-size: 15px; margin: 0 0 6px; color: var(--text); }
-  .feature p { font-size: 13.5px; color: var(--text2); margin: 0; line-height: 1.55; }
+  .gcard::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--accent), var(--accent3), transparent); opacity: 0; transition: opacity .25s; }
+  .gcard.hov:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: #bcd0e8; }
+  .gcard.hov:hover::before { opacity: 1; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+  .grid.g3 { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 900px) { .grid.g3 { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .grid.g3 { grid-template-columns: 1fr; } }
+  .icon { display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 13px; background: linear-gradient(135deg, #e3eefb, #d9f3f8); color: var(--accent); margin-bottom: 14px; }
+  .icon .material-symbols-outlined { font-size: 25px; }
+  .gcard h3 { font-size: 18px; margin: 0 0 6px; color: var(--text); }
+  .gcard p { font-size: 15px; margin: 0; line-height: 1.55; }
 
-  p, li { color: var(--text2); font-size: 15px; }
-  a { color: var(--accent); }
+  /* Carousel */
+  .carousel { position: relative; }
+  .track {
+    display: flex; gap: 22px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+    padding: 12px max(24px, calc(50% - 160px)) 34px; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .track::-webkit-scrollbar { display: none; }
+  .track:focus-visible { outline-offset: -4px; }
+  .slide { flex: 0 0 min(320px, 74vw); scroll-snap-align: center; border-radius: 26px; overflow: hidden; box-shadow: var(--shadow-lg); background: #dfe6ef; border: 5px solid #fff; transition: transform .3s; }
+  .slide img { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; }
+  .car-ui { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: -4px; }
+  .car-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); background: #fff; color: var(--accent2); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: all .2s; }
+  .car-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .dots { display: flex; gap: 8px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; border: 0; padding: 0; background: #c3d2e6; cursor: pointer; transition: all .25s; }
+  .dot[aria-current="true"] { background: var(--accent); width: 26px; border-radius: 6px; }
+  .car-caption { text-align: center; margin: 14px 0 0; font-weight: 600; color: var(--text); min-height: 1.6em; }
 
-  /* Compare (Free vs Premium) */
-  .compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
-  .plan { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
-  .plan.premium { border-color: var(--accent); }
-  .plan h3 { margin: 0 0 4px; font-size: 18px; color: var(--text); }
-  .plan .sub { font-size: 13.5px; color: var(--text3); margin: 0 0 14px; }
+  /* Try it */
+  .try-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 22px; align-items: start; }
+  @media (max-width: 960px) { .try-grid { grid-template-columns: 1fr; } }
+  .demo h3 { font-size: 20px; margin: 0 0 4px; }
+  .demo .sub { font-size: 14.5px; margin: 0 0 18px; color: var(--text3); }
+  .bpm-wrap { text-align: center; }
+  .bpm { font-family: var(--font-head); font-size: 68px; font-weight: 700; line-height: 1; color: var(--text); font-variant-numeric: tabular-nums; }
+  .bpm-label { font-size: 12px; letter-spacing: 1.5px; font-weight: 700; color: var(--text3); text-transform: uppercase; }
+  .dots-beat { display: flex; justify-content: center; gap: 10px; margin: 0 0 14px; min-height: 18px; }
+  .beat { width: 16px; height: 16px; border-radius: 50%; background: #d7e2f1; transition: background .08s, transform .08s; }
+  .beat.on { background: var(--accent); transform: scale(1.3); }
+  .beat.on.first { background: var(--accent3); }
+  .row { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 14px 0; flex-wrap: wrap; }
+  .chip-btn { border: 1px solid var(--border); background: #fff; color: var(--text); font: 600 14px var(--font); padding: 8px 12px; border-radius: 10px; cursor: pointer; min-width: 44px; min-height: 40px; transition: all .15s; }
+  .chip-btn:hover { background: var(--bg3); }
+  .chip-btn[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  input[type=range] { width: 100%; accent-color: var(--accent); }
+  .round { width: 62px; height: 62px; border-radius: 50%; border: 0; background: var(--accent); color: #fff; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 8px 20px rgba(59, 110, 165, .4); transition: transform .15s, background .2s; }
+  .round:hover { transform: scale(1.06); }
+  .round.stop { background: #ef5b5b; box-shadow: 0 8px 20px rgba(239, 91, 91, .4); }
+  .round .material-symbols-outlined { font-size: 32px; }
+  .tap { display: inline-flex; align-items: center; gap: 6px; }
+  select { font: 600 14px var(--font); padding: 8px 10px; border-radius: 10px; border: 1px solid var(--border); background: #fff; color: var(--text); min-height: 40px; }
+  label.inline { font-size: 14px; color: var(--text2); display: inline-flex; align-items: center; gap: 8px; }
+  .tab-scroll { overflow-x: auto; padding-bottom: 8px; margin: 0 -4px; }
+  .tab { display: grid; grid-template-columns: 22px repeat(16, 30px); gap: 3px 2px; width: max-content; padding: 4px; font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; }
+  .slbl { font-size: 12px; font-weight: 700; color: var(--accent2); background: var(--bg3); border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+  .cell { height: 32px; border: 0; border-radius: 6px; background: transparent; color: var(--text3); font: 600 13px ui-monospace, Menlo, Consolas, monospace; cursor: pointer; padding: 0; position: relative; transition: background .1s; }
+  .cell::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: #cbd8e8; z-index: 0; }
+  .cell span { position: relative; z-index: 1; background: transparent; padding: 0 3px; }
+  .cell.has { color: #fff; }
+  .cell.has span { background: var(--accent); border-radius: 6px; padding: 3px 6px; }
+  .cell:hover { background: rgba(59, 110, 165, 0.12); }
+  .cell.play { background: rgba(43, 179, 208, 0.25); }
+  .fretbar { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 12px 0; }
+  .fretbar .lbl { font-size: 13px; font-weight: 600; color: var(--text3); margin-right: 4px; }
+  .fretbar .chip-btn { min-width: 38px; padding: 6px 8px; }
+  .demo-note { font-size: 13.5px; color: var(--text3); margin: 18px 0 0; }
+  .demo-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+  .try-cta { text-align: center; margin-top: 30px; }
+  .try-cta p { margin: 0 0 14px; font-weight: 500; }
+  .noaudio { color: #b3402f; font-size: 14px; }
+
+  /* Video */
+  .video-wrap { max-width: 360px; margin: 0 auto; border-radius: 26px; overflow: hidden; box-shadow: var(--shadow-lg); border: 5px solid #fff; background: #000; }
+  .video-wrap video { width: 100%; display: block; aspect-ratio: 9/16; background: #000; }
+
+  /* Compare */
+  .compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 860px; margin: 0 auto; }
+  .plan h3 { margin: 0 0 4px; font-size: 22px; color: var(--text); }
+  .plan .sub { font-size: 14.5px; color: var(--text3); margin: 0 0 16px; }
   .plan ul { list-style: none; margin: 0; padding: 0; }
-  .plan li { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 8px; font-size: 14.5px; }
-  .plan li .material-symbols-outlined { font-size: 20px; color: var(--accent); flex: none; margin-top: 2px; }
+  .plan li { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; font-size: 15px; }
+  .plan li .material-symbols-outlined { font-size: 21px; color: var(--accent); flex: none; margin-top: 2px; }
+  .plan.premium { border-color: var(--accent); box-shadow: 0 14px 40px rgba(59, 110, 165, 0.16); }
+  .plan.premium::before { opacity: 1; }
+  .tagline { position: absolute; top: 16px; right: 16px; font-size: 11.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--accent2); background: rgba(59, 110, 165, 0.12); padding: 4px 10px; border-radius: 999px; }
 
-  /* Callout cards (feedback / support) */
-  .callout { text-align: center; }
-  .callout h3 { margin: 0 0 8px; font-size: 20px; color: var(--text); }
-  .callout p { max-width: 520px; margin: 0 auto 18px; }
-  .links-small { margin-top: 14px; font-size: 13.5px; }
+  /* Callouts */
+  .callout { text-align: center; padding: 44px 28px; max-width: 760px; margin: 0 auto; }
+  .callout h2 { font-size: clamp(26px, 3.2vw, 34px); }
+  .callout p { max-width: 520px; margin: 0 auto 22px; }
+  .callout .btn-group { justify-content: center; }
+  .callout .small { margin: 18px 0 0; font-size: 14px; }
+  .callout.support { background: linear-gradient(135deg, rgba(255, 244, 191, 0.7), rgba(255, 255, 255, 0.9)); border-color: #f0dd7a; }
 
-  /* Social icons */
-  .social { display: flex; gap: 14px; justify-content: center; margin-bottom: 12px; }
-  .social a { color: var(--text3); display: inline-flex; padding: 6px; border-radius: 8px; }
-  .social a:hover { color: var(--accent); }
+  /* Reveal */
+  .js .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+  .js .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .js .reveal { opacity: 1; transform: none; transition: none; }
+    .blob, .hero-card, .pulse { animation: none; }
+    .hero-card { transform: rotate(3deg); }
+  }
+
+  /* Footer */
+  footer { margin-top: 40px; padding: 36px 0 44px; text-align: center; font-size: 14px; color: var(--text3); line-height: 1.9; background: linear-gradient(180deg, transparent, rgba(59, 110, 165, 0.08)); border-top: 1px solid var(--border); }
+  footer a { color: var(--text2); text-decoration: underline; text-decoration-color: var(--border); }
+  .social { display: flex; gap: 14px; justify-content: center; margin-bottom: 14px; }
+  .social a { color: var(--text2); display: inline-flex; padding: 9px; border-radius: 12px; background: #fff; border: 1px solid var(--border); transition: all .2s; }
+  .social a:hover { color: #fff; background: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
   .social svg { width: 22px; height: 22px; fill: currentColor; }
-
-  hr.divider { border: 0; height: 1px; background: var(--border); margin: 48px 0 0; }
-
-  footer { margin-top: 32px; text-align: center; font-size: 13px; color: var(--text3); line-height: 1.8; }
-  footer a { color: var(--text3); text-decoration: underline; text-decoration-color: var(--border); }
 </style>
 </head>
 <body>
-  <div class="wrap">
+  <a class="skip" href="#main">Skip to content</a>
 
-    <header>
+  <header class="navbar">
+    <div class="container nav-container">
       <a href="index.html" class="brand">
-        <img src="assets/icon.png" alt="tabba logo" />
-        <span><span class="accent">tab</span><span class="light">ba</span></span>
+        <img src="assets/icon.png" alt="tabba logo" width="36" height="36" />
+        <span class="name"><span class="accent">tab</span><span class="light">ba</span></span>
       </a>
-      <nav>
+      <nav class="nav-links" aria-label="Main">
+        <a class="sec" href="#tour">App tour</a>
+        <a class="sec" href="#try">Try it</a>
+        <a class="sec" href="#video" id="nav-video" hidden>Video</a>
+        <a class="sec" href="#premium">Free &amp; Premium</a>
+        <a class="sec" href="#support">Support</a>
         <a href="privacy.html">Privacy Policy</a>
         <a href="mailto:zbcdevo@gmail.com">Contact</a>
       </nav>
-    </header>
+    </div>
+  </header>
+
+  <main id="main">
 
     <section class="hero">
-      <h1>Tabba: Guitar &amp; Bass Tab Editor</h1>
-      <p>Write, hear and practice your guitar and bass tabs, whether you're learning your first chords or arranging a full band. Free, ad-free, and your tabs stay on your device.</p>
-      <div class="btn-group">
-        <a id="play-link" class="badge primary" href="https://play.google.com/store/apps/details?id=com.zbcdevo.tabba" target="_blank" rel="noopener">
-          <span class="material-symbols-outlined">android</span>
-          Download for Android
-        </a>
-        <a class="badge secondary" href="https://github.com/zbcdevo/tabba-page/issues/new/choose" target="_blank" rel="noopener">
-          <span class="material-symbols-outlined">feedback</span>
-          Report an issue / suggestion
-        </a>
-      </div>
-    </section>
-
-    <section>
-      <h2>Made for every player</h2>
-      <div class="features">
-        <div class="feature">
-          <span class="icon"><span class="material-symbols-outlined">emoji_people</span></span>
-          <h3>First-timers</h3>
-          <p>Just picked up a guitar? Write down what you're learning and hear it back, no theory needed.</p>
-        </div>
-        <div class="feature">
-          <span class="icon"><span class="material-symbols-outlined">school</span></span>
-          <h3>Teachers &amp; students</h3>
-          <p>Jot down exercises and share them as text or <code>.tabba</code> files.</p>
-        </div>
-        <div class="feature">
-          <span class="icon"><span class="material-symbols-outlined">graphic_eq</span></span>
-          <h3>Bassists</h3>
-          <p>Bass is a first-class citizen here, with its own track in every song.</p>
-        </div>
-        <div class="feature">
-          <span class="icon"><span class="material-symbols-outlined">groups</span></span>
-          <h3>Bands &amp; songwriters</h3>
-          <p>Sketch full arrangements with several guitars and a bass, and hear them together.</p>
-        </div>
-        <div class="feature">
-          <span class="icon"><span class="material-symbols-outlined">family_restroom</span></span>
-          <h3>All ages</h3>
-          <p>A friendly, touch-first editor for kids, parents, and grandparents alike.</p>
-        </div>
-        <div class="feature">
-          <span class="icon"><span class="material-symbols-outlined">replay</span></span>
-          <h3>Coming back</h3>
-          <p>Picking up an old guitar after years? Tabba makes it easy to get going again.</p>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>Features</h2>
-      <div class="features">
-        <div class="feature">
-          <span class="icon">
-            <span class="material-symbols-outlined">edit_note</span>
-          </span>
-          <h3>Write tabs your way</h3>
-          <p>Edit tabs with a touch-friendly fretboard, piano, or chord picker, or use keyboard shortcuts on PC.</p>
-        </div>
-        <div class="feature">
-          <span class="icon">
-            <span class="material-symbols-outlined">play_circle</span>
-          </span>
-          <h3>Hear what you write</h3>
-          <p>Listen to your tab in real time with support for hammer-ons, pull-offs, slides, bends, vibrato, and palm mutes.</p>
-        </div>
-        <div class="feature">
-          <span class="icon">
-            <span class="material-symbols-outlined">timer</span>
-          </span>
-          <h3>Built-in Metronome</h3>
-          <p>Practice with tap tempo, custom time signatures, per-beat accents, and selectable click sounds.</p>
-        </div>
-        <div class="feature">
-          <span class="icon">
-            <span class="material-symbols-outlined">queue_music</span>
-          </span>
-          <h3>Multi-track Songs</h3>
-          <p>Combine up to three guitar tracks and one bass track in a single song.</p>
-        </div>
-        <div class="feature">
-          <span class="icon">
-            <span class="material-symbols-outlined">security</span>
-          </span>
-          <h3>Your Data Stays Yours</h3>
-          <p>No accounts or analytics. Your tabs stay on your device, and you can back up your library anytime.</p>
-        </div>
-        <div class="feature">
-          <span class="icon">
-            <span class="material-symbols-outlined">share</span>
-          </span>
-          <h3>Export &amp; Share</h3>
-          <p>Share tabs as text, export and import <code>.tabba</code> files, or render audio to <code>.wav</code>.</p>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>Free &amp; Premium</h2>
-      <div class="compare">
-        <div class="plan">
-          <h3>Free</h3>
-          <p class="sub">Everything you need to write and practice. No ads, no account.</p>
-          <ul>
-            <li><span class="material-symbols-outlined">check_circle</span>Fretboard, piano and chord-picker editing</li>
-            <li><span class="material-symbols-outlined">check_circle</span>Real-time playback with hammer-ons, slides, bends and more</li>
-            <li><span class="material-symbols-outlined">check_circle</span>Metronome with tap tempo and custom time signatures</li>
-            <li><span class="material-symbols-outlined">check_circle</span>Export and share your tabs</li>
+      <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+      <div class="container hero-grid">
+        <div>
+          <div class="pill"><span class="pulse"></span> Free · Ad-free · Android</div>
+          <h1>Write, hear &amp; practice your <span class="grad">guitar and bass tabs</span></h1>
+          <p class="lead">Whether you're learning your first chords or arranging a full band, Tabba is your friendly tab studio. Free, ad-free, and your tabs stay on your device.</p>
+          <div class="btn-group">
+            <a data-play class="btn primary" href="https://play.google.com/store/apps/details?id=com.zbcdevo.tabba" target="_blank" rel="noopener">
+              <span class="material-symbols-outlined">android</span>
+              Download for Android
+            </a>
+            <a class="btn secondary" href="https://github.com/zbcdevo/tabba-page/issues/new/choose" target="_blank" rel="noopener">
+              <span class="material-symbols-outlined">feedback</span>
+              Report an issue / suggestion
+            </a>
+          </div>
+          <ul class="chips">
+            <li><span class="material-symbols-outlined">no_accounts</span>No account needed</li>
+            <li><span class="material-symbols-outlined">wifi_off</span>Works offline</li>
+            <li><span class="material-symbols-outlined">lock</span>Your tabs stay on your device</li>
           </ul>
         </div>
-        <div class="plan premium">
-          <h3>Premium</h3>
-          <p class="sub">Optional extras that also help keep Tabba going.</p>
-          <ul>
-            <li><span class="material-symbols-outlined">star</span>{{PREMIUM_FEATURE_1}}</li>
-            <li><span class="material-symbols-outlined">star</span>{{PREMIUM_FEATURE_2}}</li>
-            <li><span class="material-symbols-outlined">star</span>{{PREMIUM_FEATURE_3}}</li>
-          </ul>
+        <div class="hero-visual">
+          <div class="hero-card">
+            <img src="assets/screens/hero.webp" srcset="assets/screens/hero-480.webp 480w, assets/screens/hero.webp 900w" sizes="(max-width: 600px) 70vw, 340px" width="900" height="1600" alt="Tabba's tab editor open on a tablet, with a guitar tab on top and a fretboard for entering notes below, in front of an acoustic guitar." fetchpriority="high" />
+          </div>
         </div>
       </div>
     </section>
 
-    <section>
-      <div class="card callout">
-        <h3>Help shape Tabba</h3>
-        <p>What do you play? What do you love, and what's missing? Tell us in two minutes. Every reply is read by a real person.</p>
-        <div class="btn-group">
-          <a class="badge primary" href="{{FEEDBACK_FORM_URL}}" target="_blank" rel="noopener">
-            <span class="material-symbols-outlined">forum</span>
-            Share your thoughts
-          </a>
+    <section class="block" id="tour">
+      <div class="container">
+        <div class="head reveal">
+          <p class="eyebrow">App tour</p>
+          <h2>See Tabba in action</h2>
+          <p>Swipe through the editor, the player and the metronome.</p>
         </div>
-        <p class="links-small">Prefer something else? <a href="https://github.com/zbcdevo/tabba-page/issues/new/choose" target="_blank" rel="noopener">Open an issue</a> or <a href="mailto:zbcdevo@gmail.com">send an email</a>.</p>
+      </div>
+      <div class="carousel reveal" id="carousel" aria-roledescription="carousel" aria-label="Tabba app screenshots">
+        <div class="track" id="track" tabindex="0" aria-label="Screenshots, use the arrow keys to browse">
+          <div class="slide" data-cap="Meet Tabba"><img src="assets/screens/meet-480.webp" srcset="assets/screens/meet-480.webp 480w, assets/screens/meet.webp 900w" sizes="(max-width: 600px) 74vw, 320px" width="900" height="1600" loading="lazy" alt="Tabba's home screen with a welcome banner, a Continue editing card for My First Tab, and Create New Tab and Open My Tabs buttons." /></div>
+          <div class="slide" data-cap="Intuitive tab editor"><img src="assets/screens/editor-480.webp" srcset="assets/screens/editor-480.webp 480w, assets/screens/editor.webp 900w" sizes="(max-width: 600px) 74vw, 320px" width="900" height="1600" loading="lazy" alt="The tab editor showing a multi-track guitar riff with a fretboard input underneath." /></div>
+          <div class="slide" data-cap="Audio playback"><img src="assets/screens/playback-480.webp" srcset="assets/screens/playback-480.webp 480w, assets/screens/playback.webp 900w" sizes="(max-width: 600px) 74vw, 320px" width="900" height="1600" loading="lazy" alt="The Play Settings dialog with a tempo slider, volume sliders for the guitar and bass tracks, and metronome and repeat switches." /></div>
+          <div class="slide" data-cap="Playing techniques"><img src="assets/screens/techniques-480.webp" srcset="assets/screens/techniques-480.webp 480w, assets/screens/techniques.webp 900w" sizes="(max-width: 600px) 74vw, 320px" width="900" height="1600" loading="lazy" alt="The Techniques panel with hammer-on, pull-off, slide up, slide down, vibrato, bend, sustain and palm mute buttons." /></div>
+          <div class="slide" data-cap="Piano keyboard"><img src="assets/screens/piano-480.webp" srcset="assets/screens/piano-480.webp 480w, assets/screens/piano.webp 900w" sizes="(max-width: 600px) 74vw, 320px" width="900" height="1600" loading="lazy" alt="The editor with a visual piano keyboard at the bottom for writing notes." /></div>
+          <div class="slide" data-cap="Built-in metronome"><img src="assets/screens/metronome-480.webp" srcset="assets/screens/metronome-480.webp 480w, assets/screens/metronome.webp 900w" sizes="(max-width: 600px) 74vw, 320px" width="900" height="1600" loading="lazy" alt="The metronome screen with 120 beats per minute, tap tempo, time signature and sound type settings." /></div>
+          <div class="slide" data-cap="Advanced features"><img src="assets/screens/advanced-480.webp" srcset="assets/screens/advanced-480.webp 480w, assets/screens/advanced.webp 900w" sizes="(max-width: 600px) 74vw, 320px" width="900" height="1600" loading="lazy" alt="The song menu with tuning choices, a transpose control, and options to share as text or export as a Tabba file or WAV audio." /></div>
+        </div>
+        <div class="car-ui">
+          <button class="car-btn" id="prev" aria-label="Previous screenshot"><span class="material-symbols-outlined">chevron_left</span></button>
+          <div class="dots" id="dots" role="group" aria-label="Choose screenshot"></div>
+          <button class="car-btn" id="next" aria-label="Next screenshot"><span class="material-symbols-outlined">chevron_right</span></button>
+        </div>
+        <p class="car-caption" id="caption" aria-live="polite"></p>
       </div>
     </section>
 
-    <section>
-      <div class="card callout">
-        <h3>Support Zabba Labs</h3>
-        <p>Tabba is made by a tiny indie studio. If you'd like to support new music tools, you can buy us a coffee. Totally optional, always appreciated.</p>
-        <div class="btn-group">
-          <a class="badge secondary" href="{{BMC_URL}}" target="_blank" rel="noopener">
-            <span class="material-symbols-outlined">local_cafe</span>
-            Buy us a coffee
+    <section class="block" id="try">
+      <div class="container">
+        <div class="head reveal">
+          <p class="eyebrow">Try it right here</p>
+          <h2>Make some noise before you install</h2>
+          <p>A tiny taste of Tabba, running in your browser. Turn your sound on and tap around.</p>
+        </div>
+        <div class="try-grid">
+
+          <div class="gcard demo reveal" id="metro">
+            <h3>Metronome</h3>
+            <p class="sub">Tap tempo, time signatures, and an accented first beat.</p>
+            <div class="bpm-wrap">
+              <div class="dots-beat" id="beats" aria-hidden="true"></div>
+              <div class="bpm" id="bpm" aria-live="off">120</div>
+              <div class="bpm-label">Beats per minute</div>
+            </div>
+            <div class="row">
+              <button class="chip-btn" data-d="-5" aria-label="Decrease tempo by 5">-5</button>
+              <button class="chip-btn" data-d="-1" aria-label="Decrease tempo by 1">-1</button>
+              <button class="chip-btn" data-d="1" aria-label="Increase tempo by 1">+1</button>
+              <button class="chip-btn" data-d="5" aria-label="Increase tempo by 5">+5</button>
+            </div>
+            <input type="range" id="slider" min="40" max="220" value="120" aria-label="Tempo in beats per minute" />
+            <div class="row">
+              <button class="chip-btn tap" id="tap"><span class="material-symbols-outlined">touch_app</span>Tap tempo</button>
+              <button class="round" id="mplay" aria-label="Start metronome"><span class="material-symbols-outlined">play_arrow</span></button>
+              <label class="inline">Time
+                <select id="sig" aria-label="Time signature">
+                  <option value="4">4/4</option>
+                  <option value="3">3/4</option>
+                  <option value="6">6/8</option>
+                </select>
+              </label>
+            </div>
+            <p class="noaudio" id="noaudio" hidden>Your browser can't play sound here, but the app can!</p>
+          </div>
+
+          <div class="gcard demo reveal" id="tabdemo">
+            <h3>Write a riff</h3>
+            <p class="sub">Pick a fret, tap the tab to place notes, then press play to hear it.</p>
+            <div class="fretbar" id="frets" role="group" aria-label="Fret number to place"><span class="lbl">Fret</span></div>
+            <div class="tab-scroll"><div class="tab" id="tab" role="group" aria-label="Guitar tab, 6 strings by 16 steps"></div></div>
+            <div class="demo-actions">
+              <button class="btn primary sm" id="tplay"><span class="material-symbols-outlined">play_arrow</span><span id="tplay-label">Play</span></button>
+              <button class="btn secondary sm" id="treset"><span class="material-symbols-outlined">replay</span>Reset riff</button>
+              <button class="btn secondary sm" id="tclear"><span class="material-symbols-outlined">delete</span>Clear</button>
+            </div>
+            <p class="demo-note">Plays at the metronome's tempo (<span id="tbpm">120</span> BPM). Tap a note again to remove it.</p>
+          </div>
+
+        </div>
+        <div class="try-cta reveal">
+          <p>That's just a taste. Write your own tabs, save them and share them for free.</p>
+          <a data-play class="btn primary" href="https://play.google.com/store/apps/details?id=com.zbcdevo.tabba" target="_blank" rel="noopener">
+            <span class="material-symbols-outlined">android</span>
+            Download for Android
           </a>
         </div>
       </div>
     </section>
 
-    <hr class="divider" />
+    <section class="block" id="video" hidden>
+      <div class="container">
+        <div class="head reveal">
+          <p class="eyebrow">Watch</p>
+          <h2>Tabba in 45 seconds</h2>
+          <p>From a blank page to a riff you can hear.</p>
+        </div>
+        <div class="video-wrap reveal">
+          <video id="demo-video" controls preload="none" playsinline poster="assets/screens/hero.webp" aria-label="A short video showing how to write and play a tab in Tabba"></video>
+        </div>
+      </div>
+    </section>
 
-    <footer>
+    <section class="block" id="audience">
+      <div class="container">
+        <div class="head reveal">
+          <p class="eyebrow">Made for every player</p>
+          <h2>Everyone is welcome here</h2>
+          <p>No matter how long you've played, or whether you've started yet.</p>
+        </div>
+        <div class="grid g3">
+          <div class="gcard hov reveal">
+            <span class="icon"><span class="material-symbols-outlined">emoji_people</span></span>
+            <h3>First-timers</h3>
+            <p>Just picked up a guitar? Write down what you're learning and hear it back, no theory needed.</p>
+          </div>
+          <div class="gcard hov reveal">
+            <span class="icon"><span class="material-symbols-outlined">school</span></span>
+            <h3>Teachers &amp; students</h3>
+            <p>Jot down exercises and share them as text or <code>.tabba</code> files.</p>
+          </div>
+          <div class="gcard hov reveal">
+            <span class="icon"><span class="material-symbols-outlined">graphic_eq</span></span>
+            <h3>Bassists</h3>
+            <p>Bass is a first-class citizen here, with its own track in every song.</p>
+          </div>
+          <div class="gcard hov reveal">
+            <span class="icon"><span class="material-symbols-outlined">groups</span></span>
+            <h3>Bands &amp; songwriters</h3>
+            <p>Sketch full arrangements with several guitars and a bass, and hear them together.</p>
+          </div>
+          <div class="gcard hov reveal">
+            <span class="icon"><span class="material-symbols-outlined">family_restroom</span></span>
+            <h3>All ages</h3>
+            <p>A friendly, touch-first editor for kids, parents, and grandparents alike.</p>
+          </div>
+          <div class="gcard hov reveal">
+            <span class="icon"><span class="material-symbols-outlined">replay</span></span>
+            <h3>Coming back</h3>
+            <p>Picking up an old guitar after years? Tabba makes it easy to get going again.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="features">
+      <div class="container">
+        <div class="head reveal">
+          <p class="eyebrow">Features</p>
+          <h2>Everything for your next riff</h2>
+          <p>Simple to start, with plenty of depth when you want it.</p>
+        </div>
+        <div class="grid">
+          <div class="gcard hov reveal">
+            <span class="icon"><span class="material-symbols-outlined">edit_note</span></span>
+            <h3>Write tabs your way</h3>
+            <p>Edit tabs with a touch-friendly fretboard, piano, or chord picker, or use keyboard shortcuts on PC.</p>
+          </div>
+          <div class="gcard hov reveal">
+            <span class="icon"><span class="material-symbols-outlined">play_circle</span></span>
+            <h3>Hear what you write</h3>
+            <p>Listen in real time, with hammer-ons, pull-offs, slides, bends, vibrato, and palm mutes.</p>
+          </div>
+          <div class="gcard hov reveal">
+            <span class="icon"><span class="material-symbols-outlined">timer</span></span>
+            <h3>Built-in Metronome</h3>
+            <p>Practice with tap tempo, custom time signatures, per-beat accents, and selectable click sounds.</p>
+          </div>
+          <div class="gcard hov reveal">
+            <span class="icon"><span class="material-symbols-outlined">queue_music</span></span>
+            <h3>Multi-track Songs</h3>
+            <p>Combine up to three guitar tracks and one bass track in a single song.</p>
+          </div>
+          <div class="gcard hov reveal">
+            <span class="icon"><span class="material-symbols-outlined">volume_up</span></span>
+            <h3>Mix your song</h3>
+            <p>Adjust the playback tempo and balance the volume of every track.</p>
+          </div>
+          <div class="gcard hov reveal">
+            <span class="icon"><span class="material-symbols-outlined">tune</span></span>
+            <h3>Transpose &amp; retune</h3>
+            <p>Change keys with a tap and switch tunings to match your instrument.</p>
+          </div>
+          <div class="gcard hov reveal">
+            <span class="icon"><span class="material-symbols-outlined">share</span></span>
+            <h3>Export &amp; Share</h3>
+            <p>Share tabs as text, export and import <code>.tabba</code> files, or render audio to <code>.wav</code>.</p>
+          </div>
+          <div class="gcard hov reveal">
+            <span class="icon"><span class="material-symbols-outlined">security</span></span>
+            <h3>Your Data Stays Yours</h3>
+            <p>No accounts or analytics. Your tabs stay on your device, and you can back up your library anytime.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="premium">
+      <div class="container">
+        <div class="head reveal">
+          <p class="eyebrow">Free &amp; Premium</p>
+          <h2>Generous by default</h2>
+          <p>Start writing for free. Premium is an optional extra.</p>
+        </div>
+        <div class="compare">
+          <div class="gcard plan reveal">
+            <h3>Free</h3>
+            <p class="sub">Everything you need to write and practice. No ads, no account.</p>
+            <ul>
+              <li><span class="material-symbols-outlined">check_circle</span>Fretboard, piano and chord-picker editing</li>
+              <li><span class="material-symbols-outlined">check_circle</span>Real-time playback with hammer-ons, slides, bends and more</li>
+              <li><span class="material-symbols-outlined">check_circle</span>Metronome with tap tempo and custom time signatures</li>
+              <li><span class="material-symbols-outlined">check_circle</span>Export and share your tabs</li>
+            </ul>
+          </div>
+          <div class="gcard plan premium reveal">
+            <span class="tagline">Optional</span>
+            <h3>Premium</h3>
+            <p class="sub">Extras that also help keep Tabba going.</p>
+            <ul>
+              <li><span class="material-symbols-outlined">star</span>{{PREMIUM_FEATURE_1}}</li>
+              <li><span class="material-symbols-outlined">star</span>{{PREMIUM_FEATURE_2}}</li>
+              <li><span class="material-symbols-outlined">star</span>{{PREMIUM_FEATURE_3}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="feedback">
+      <div class="container">
+        <div class="gcard callout reveal">
+          <p class="eyebrow">Help shape Tabba</p>
+          <h2>What should we build next?</h2>
+          <p>What do you play? What do you love, and what's missing? Tell us in two minutes. Every reply is read by a real person.</p>
+          <div class="btn-group">
+            <a class="btn primary" href="{{FEEDBACK_FORM_URL}}" target="_blank" rel="noopener">
+              <span class="material-symbols-outlined">forum</span>
+              Share your thoughts
+            </a>
+          </div>
+          <p class="small">Prefer something else? <a href="https://github.com/zbcdevo/tabba-page/issues/new/choose" target="_blank" rel="noopener">Open an issue</a> or <a href="mailto:zbcdevo@gmail.com">send an email</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="support">
+      <div class="container">
+        <div class="gcard callout support reveal">
+          <p class="eyebrow">Support Zabba Labs</p>
+          <h2>Like what we're making?</h2>
+          <p>Tabba is made by a tiny indie studio. If you'd like to support new music tools, you can buy us a coffee. Totally optional, always appreciated.</p>
+          <div class="btn-group">
+            <a class="btn bmc" href="{{BMC_URL}}" target="_blank" rel="noopener">
+              <span class="material-symbols-outlined">local_cafe</span>
+              Buy us a coffee
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
       <div class="social">
         <a href="{{INSTAGRAM_URL}}" target="_blank" rel="noopener" aria-label="Tabba on Instagram">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm5 3.5a4.500 4.500 0 1 1 0 9 4.500 4.500 0 0 1 0-9zm0 2a2.500 2.500 0 1 0 0 5 2.500 2.500 0 0 0 0-5zM17.500 5.500a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm5 3.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM17.5 5.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
         </a>
         <a href="{{FACEBOOK_URL}}" target="_blank" rel="noopener" aria-label="Tabba on Facebook">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.500 21v-7.500h2.500l.5-3h-3V8.600c0-.9.300-1.500 1.600-1.500h1.600V4.400c-.3 0-1.200-.1-2.200-.1-2.200 0-3.700 1.300-3.700 3.800v2.400H8.300v3h2.500V21z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7.5h2.5l.5-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8.3v3h2.5V21z"/></svg>
         </a>
         <a href="{{TIKTOK_URL}}" target="_blank" rel="noopener" aria-label="Tabba on TikTok">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.600 5.800A4.300 4.300 0 0 1 15.500 3h-3.100v12.400a2.600 2.600 0 1 1-2.600-2.600c.3 0 .5 0 .8.100V9.700a5.700 5.700 0 1 0 4.900 5.700V9a7.400 7.400 0 0 0 4.300 1.400V7.300a4.300 4.300 0 0 1-3.200-1.500z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.1v12.4a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.7a5.7 5.7 0 1 0 4.9 5.7V9a7.4 7.4 0 0 0 4.3 1.4V7.3a4.3 4.3 0 0 1-3.2-1.5z"/></svg>
         </a>
         <a href="{{X_URL}}" target="_blank" rel="noopener" aria-label="Tabba on X">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.250h3.308l-7.227 8.260 8.502 11.240H16.170l-5.214-6.817L4.990 21.750H1.680l7.730-8.835L1.254 2.250H8.080l4.713 6.231zm-1.161 17.520h1.833L7.084 4.126H5.117z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </a>
       </div>
       © <a href="index.html">Tabba</a> · <a href="https://zabbalabs.com" target="_blank" rel="noopener">Zabba Labs</a> · since 2026 · All rights reserved.<br />
       <a href="privacy.html">Privacy Policy</a> · <a href="mailto:zbcdevo@gmail.com">Contact Us</a> · <a href="{{BMC_URL}}" target="_blank" rel="noopener">Buy us a coffee</a>
-    </footer>
+    </div>
+  </footer>
 
-  </div>
   <script>
-    // Pass the traffic source (?ref=instagram etc.) to Play Store install attribution.
-    // No cookies, no storage, nothing is sent anywhere.
-    (function () {
-      var ref = new URLSearchParams(location.search).get('ref');
-      if (!ref || !/^[a-z0-9_-]{1,32}$/i.test(ref)) return;
-      var link = document.getElementById('play-link');
-      if (link) link.href += '&referrer=' + encodeURIComponent('utm_source=' + ref + '&utm_medium=social');
-    })();
+  (function () {
+    'use strict';
+    var $ = function (s, r) { return (r || document).querySelector(s); };
+    var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ---- Install attribution: ?ref=instagram -> Play Store referrer. No cookies, nothing stored or sent. ---- */
+    var ref = new URLSearchParams(location.search).get('ref');
+    if (ref && /^[a-z0-9_-]{1,32}$/i.test(ref)) {
+      $$('[data-play]').forEach(function (a) {
+        a.href += '&referrer=' + encodeURIComponent('utm_source=' + ref + '&utm_medium=social');
+      });
+    }
+
+    /* ---- Reveal on scroll ---- */
+    var reveals = $$('.reveal');
+    if ('IntersectionObserver' in window && !reduce) {
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: 0.12 });
+      reveals.forEach(function (el) { io.observe(el); });
+    } else { reveals.forEach(function (el) { el.classList.add('in'); }); }
+
+    /* ---- Carousel ---- */
+    var track = $('#track'), slides = $$('.slide', track), dotsEl = $('#dots'), cap = $('#caption'), cur = 0;
+    slides.forEach(function (s, i) {
+      var d = document.createElement('button');
+      d.className = 'dot'; d.setAttribute('aria-label', 'Show screenshot ' + (i + 1) + ': ' + s.dataset.cap);
+      d.addEventListener('click', function () { go(i); });
+      dotsEl.appendChild(d);
+    });
+    var dots = $$('.dot', dotsEl);
+    function setCur(i) {
+      cur = i; cap.textContent = slides[i].dataset.cap + ' (' + (i + 1) + ' of ' + slides.length + ')';
+      dots.forEach(function (d, k) { d.setAttribute('aria-current', k === i ? 'true' : 'false'); });
+    }
+    function go(i) {
+      i = Math.max(0, Math.min(slides.length - 1, i));
+      var s = slides[i];
+      track.scrollTo({ left: s.offsetLeft - (track.clientWidth - s.clientWidth) / 2, behavior: reduce ? 'auto' : 'smooth' });
+      setCur(i);
+    }
+    var raf;
+    track.addEventListener('scroll', function () {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(function () {
+        var mid = track.scrollLeft + track.clientWidth / 2, best = 0, bd = 1e9;
+        slides.forEach(function (s, i) { var d = Math.abs(s.offsetLeft + s.clientWidth / 2 - mid); if (d < bd) { bd = d; best = i; } });
+        if (best !== cur) setCur(best);
+      });
+    }, { passive: true });
+    $('#prev').addEventListener('click', function () { go(cur - 1); });
+    $('#next').addEventListener('click', function () { go(cur + 1); });
+    track.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(cur + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(cur - 1); }
+    });
+    setCur(0);
+
+    /* ---- Video slot: shown only once assets/demo.mp4 exists ---- */
+    if (window.fetch && location.protocol !== 'file:') {
+      fetch('assets/demo.mp4', { method: 'HEAD' }).then(function (r) {
+        if (!r.ok) return;
+        var v = $('#demo-video'); v.src = 'assets/demo.mp4';
+        $('#video').hidden = false; $('#nav-video').hidden = false;
+      }).catch(function () {});
+    }
+
+    /* ---- Web Audio helpers ---- */
+    var AC = window.AudioContext || window.webkitAudioContext, ctx = null;
+    function audio() {
+      if (!AC) { $('#noaudio').hidden = false; return null; }
+      if (!ctx) ctx = new AC();
+      if (ctx.state === 'suspended') ctx.resume();
+      return ctx;
+    }
+    function click(t, accent) {
+      var o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = 'square'; o.frequency.value = accent ? 1600 : 1000;
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(accent ? 0.3 : 0.18, t + 0.002);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.05);
+      o.connect(g); g.connect(ctx.destination); o.start(t); o.stop(t + 0.06);
+    }
+    function pluck(freq, t) {
+      var o = ctx.createOscillator(), f = ctx.createBiquadFilter(), g = ctx.createGain();
+      o.type = 'sawtooth'; o.frequency.value = freq;
+      f.type = 'lowpass'; f.frequency.setValueAtTime(3400, t); f.frequency.exponentialRampToValueAtTime(450, t + 0.7);
+      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.16, t + 0.008); g.gain.exponentialRampToValueAtTime(0.0001, t + 1.1);
+      o.connect(f); f.connect(g); g.connect(ctx.destination); o.start(t); o.stop(t + 1.15);
+    }
+    // Look-ahead scheduler: plays steps slightly ahead of time, and reports them to the UI when they sound.
+    function makeLoop(stepSec, play, show) {
+      var timer, raf, next, idx, q = [], on = false;
+      function tick() { while (next < ctx.currentTime + 0.12) { play(idx, next); q.push({ t: next, i: idx }); next += stepSec(); idx++; } }
+      function draw() { if (!on) return; while (q.length && q[0].t <= ctx.currentTime) show(q.shift().i); raf = requestAnimationFrame(draw); }
+      return {
+        start: function () { if (!audio()) return false; on = true; idx = 0; q = []; next = ctx.currentTime + 0.06; tick(); timer = setInterval(tick, 25); raf = requestAnimationFrame(draw); return true; },
+        stop: function () { on = false; clearInterval(timer); cancelAnimationFrame(raf); q = []; show(-1); },
+        isOn: function () { return on; }
+      };
+    }
+
+    /* ---- Shared tempo ---- */
+    var bpm = 120, bpmEl = $('#bpm'), slider = $('#slider'), tbpm = $('#tbpm');
+    function setBpm(v) { bpm = Math.max(40, Math.min(220, Math.round(v))); bpmEl.textContent = bpm; slider.value = bpm; tbpm.textContent = bpm; }
+    $$('[data-d]').forEach(function (b) { b.addEventListener('click', function () { setBpm(bpm + parseInt(b.dataset.d, 10)); }); });
+    slider.addEventListener('input', function () { setBpm(parseInt(slider.value, 10)); });
+    var taps = [];
+    $('#tap').addEventListener('click', function () {
+      var now = Date.now();
+      if (taps.length && now - taps[taps.length - 1] > 2000) taps = [];
+      taps.push(now); if (taps.length > 5) taps.shift();
+      if (taps.length > 1) setBpm(60000 / ((taps[taps.length - 1] - taps[0]) / (taps.length - 1)));
+    });
+
+    /* ---- Metronome ---- */
+    var beats = 4, beatsEl = $('#beats'), mbtn = $('#mplay'), sig = $('#sig');
+    function buildBeats() {
+      beatsEl.innerHTML = '';
+      for (var i = 0; i < beats; i++) { var d = document.createElement('span'); d.className = 'beat'; beatsEl.appendChild(d); }
+    }
+    buildBeats();
+    var metro = makeLoop(
+      function () { return beats === 6 ? 60 / bpm / 2 : 60 / bpm; },
+      function (i, t) { click(t, i % beats === 0); },
+      function (i) {
+        $$('.beat', beatsEl).forEach(function (d, k) { var on = i >= 0 && k === i % beats; d.className = 'beat' + (on ? ' on' : '') + (on && k === 0 ? ' first' : ''); });
+      }
+    );
+    function setMetroUi(on) {
+      mbtn.classList.toggle('stop', on);
+      mbtn.setAttribute('aria-label', on ? 'Stop metronome' : 'Start metronome');
+      mbtn.innerHTML = '<span class="material-symbols-outlined">' + (on ? 'stop' : 'play_arrow') + '</span>';
+    }
+    mbtn.addEventListener('click', function () {
+      if (metro.isOn()) { metro.stop(); setMetroUi(false); return; }
+      stopTab();
+      if (metro.start()) setMetroUi(true);
+    });
+    sig.addEventListener('change', function () { beats = parseInt(sig.value, 10); buildBeats(); });
+
+    /* ---- Mini tab ---- */
+    var STR = ['e', 'B', 'G', 'D', 'A', 'E'], MIDI = [64, 59, 55, 50, 45, 40], COLS = 16;
+    var RIFF = { // string index -> { step: fret }
+      3: { 0: 2, 3: 5, 6: 7, 12: 2 }, 4: { 0: 2, 3: 5, 6: 7, 12: 2 }, 5: { 0: 0, 3: 3, 6: 5, 8: 3, 10: 5, 12: 0, 14: 0 }
+    };
+    var grid = [], tabEl = $('#tab'), cells = [], fret = 0, fretsEl = $('#frets');
+    function fillRiff() {
+      grid = STR.map(function () { return new Array(COLS).fill(null); });
+      Object.keys(RIFF).forEach(function (s) { Object.keys(RIFF[s]).forEach(function (c) { grid[s][c] = RIFF[s][c]; }); });
+    }
+    function freq(s, f) { return 440 * Math.pow(2, (MIDI[s] + f - 69) / 12); }
+    function paint(s, c) {
+      var b = cells[s][c], v = grid[s][c];
+      b.className = 'cell' + (v !== null ? ' has' : '');
+      b.firstChild.textContent = v !== null ? v : '–';
+      b.setAttribute('aria-label', 'String ' + STR[s] + ', step ' + (c + 1) + ', ' + (v !== null ? 'fret ' + v : 'empty'));
+    }
+    STR.forEach(function (name, s) {
+      var l = document.createElement('div'); l.className = 'slbl'; l.textContent = name; l.setAttribute('aria-hidden', 'true'); tabEl.appendChild(l);
+      cells[s] = [];
+      for (var c = 0; c < COLS; c++) {
+        var b = document.createElement('button'); b.type = 'button'; b.dataset.s = s; b.dataset.c = c;
+        b.appendChild(document.createElement('span'));
+        tabEl.appendChild(b); cells[s][c] = b;
+      }
+    });
+    function paintAll() { for (var s = 0; s < STR.length; s++) for (var c = 0; c < COLS; c++) paint(s, c); }
+    fillRiff(); paintAll();
+    tabEl.addEventListener('click', function (e) {
+      var b = e.target.closest('.cell'); if (!b) return;
+      var s = +b.dataset.s, c = +b.dataset.c;
+      grid[s][c] = grid[s][c] === fret ? null : fret;
+      paint(s, c);
+      if (grid[s][c] !== null && audio()) pluck(freq(s, fret), ctx.currentTime + 0.01);
+    });
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12].forEach(function (n) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'chip-btn'; b.textContent = n; b.setAttribute('aria-label', 'Fret ' + n);
+      b.setAttribute('aria-pressed', n === 0 ? 'true' : 'false');
+      b.addEventListener('click', function () {
+        fret = n; $$('.chip-btn', fretsEl).forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      });
+      fretsEl.appendChild(b);
+    });
+    var tbtn = $('#tplay'), tlabel = $('#tplay-label');
+    var tabLoop = makeLoop(
+      function () { return 60 / bpm / 2; },
+      function (i, t) { var c = i % COLS; for (var s = 0; s < STR.length; s++) if (grid[s][c] !== null) pluck(freq(s, grid[s][c]), t); },
+      function (i) {
+        cells.forEach(function (row) { row.forEach(function (b, c) { b.classList.toggle('play', i >= 0 && c === i % COLS); }); });
+      }
+    );
+    function setTabUi(on) {
+      tlabel.textContent = on ? 'Stop' : 'Play';
+      tbtn.firstChild.textContent = on ? 'stop' : 'play_arrow';
+    }
+    function stopTab() { if (tabLoop.isOn()) { tabLoop.stop(); setTabUi(false); } }
+    tbtn.addEventListener('click', function () {
+      if (tabLoop.isOn()) { stopTab(); return; }
+      if (metro.isOn()) { metro.stop(); setMetroUi(false); }
+      if (tabLoop.start()) setTabUi(true);
+    });
+    $('#treset').addEventListener('click', function () { fillRiff(); paintAll(); });
+    $('#tclear').addEventListener('click', function () { grid = STR.map(function () { return new Array(COLS).fill(null); }); paintAll(); });
+  })();
   </script>
 </body>
 </html>
