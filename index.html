@@ -194,49 +194,6 @@
   .dot[aria-current="true"] { background: var(--accent); width: 26px; border-radius: 6px; }
   .car-caption { text-align: center; margin: 14px 0 0; font-weight: 600; color: var(--text); min-height: 1.6em; }
 
-  /* Try it */
-  .try-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 22px; align-items: start; }
-  @media (max-width: 960px) { .try-grid { grid-template-columns: 1fr; } }
-  .demo h3 { font-size: 20px; margin: 0 0 4px; }
-  .demo .sub { font-size: 14.5px; margin: 0 0 18px; color: var(--text3); }
-  .bpm-wrap { text-align: center; }
-  .bpm { font-family: var(--font-head); font-size: 68px; font-weight: 700; line-height: 1; color: var(--text); font-variant-numeric: tabular-nums; }
-  .bpm-label { font-size: 12px; letter-spacing: 1.5px; font-weight: 700; color: var(--text3); text-transform: uppercase; }
-  .dots-beat { display: flex; justify-content: center; gap: 10px; margin: 0 0 14px; min-height: 18px; }
-  .beat { width: 16px; height: 16px; border-radius: 50%; background: #d7e2f1; transition: background .08s, transform .08s; }
-  .beat.on { background: var(--accent); transform: scale(1.3); }
-  .beat.on.first { background: var(--accent3); }
-  .row { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 14px 0; flex-wrap: wrap; }
-  .chip-btn { border: 1px solid var(--border); background: #fff; color: var(--text); font: 600 14px var(--font); padding: 8px 12px; border-radius: 10px; cursor: pointer; min-width: 44px; min-height: 40px; transition: all .15s; }
-  .chip-btn:hover { background: var(--bg3); }
-  .chip-btn[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
-  input[type=range] { width: 100%; accent-color: var(--accent); }
-  .round { width: 62px; height: 62px; border-radius: 50%; border: 0; background: var(--accent); color: #fff; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 8px 20px rgba(59, 110, 165, .4); transition: transform .15s, background .2s; }
-  .round:hover { transform: scale(1.06); }
-  .round.stop { background: #ef5b5b; box-shadow: 0 8px 20px rgba(239, 91, 91, .4); }
-  .round .material-symbols-outlined { font-size: 32px; }
-  .tap { display: inline-flex; align-items: center; gap: 6px; }
-  select { font: 600 14px var(--font); padding: 8px 10px; border-radius: 10px; border: 1px solid var(--border); background: #fff; color: var(--text); min-height: 40px; }
-  label.inline { font-size: 14px; color: var(--text2); display: inline-flex; align-items: center; gap: 8px; }
-  .tab-scroll { overflow-x: auto; padding-bottom: 8px; margin: 0 -4px; }
-  .tab { display: grid; grid-template-columns: 22px repeat(16, 30px); gap: 3px 2px; width: max-content; padding: 4px; font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; }
-  .slbl { font-size: 12px; font-weight: 700; color: var(--accent2); background: var(--bg3); border-radius: 6px; display: flex; align-items: center; justify-content: center; }
-  .cell { height: 32px; border: 0; border-radius: 6px; background: transparent; color: var(--text3); font: 600 13px ui-monospace, Menlo, Consolas, monospace; cursor: pointer; padding: 0; position: relative; transition: background .1s; }
-  .cell::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: #cbd8e8; z-index: 0; }
-  .cell span { position: relative; z-index: 1; background: transparent; padding: 0 3px; }
-  .cell.has { color: #fff; }
-  .cell.has span { background: var(--accent); border-radius: 6px; padding: 3px 6px; }
-  .cell:hover { background: rgba(59, 110, 165, 0.12); }
-  .cell.play { background: rgba(43, 179, 208, 0.25); }
-  .fretbar { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 12px 0; }
-  .fretbar .lbl { font-size: 13px; font-weight: 600; color: var(--text3); margin-right: 4px; }
-  .fretbar .chip-btn { min-width: 38px; padding: 6px 8px; }
-  .demo-note { font-size: 13.5px; color: var(--text3); margin: 18px 0 0; }
-  .demo-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
-  .try-cta { text-align: center; margin-top: 30px; }
-  .try-cta p { margin: 0 0 14px; font-weight: 500; }
-  .noaudio { color: #b3402f; font-size: 14px; }
-
   /* Video */
   .video-wrap { max-width: 360px; margin: 0 auto; border-radius: 26px; overflow: hidden; box-shadow: var(--shadow-lg); border: 5px solid #fff; background: #000; }
   .video-wrap video { width: 100%; display: block; aspect-ratio: 9/16; background: #000; }
@@ -289,7 +246,6 @@
       </a>
       <nav class="nav-links" aria-label="Main">
         <a class="sec" href="#tour">App tour</a>
-        <a class="sec" href="#try">Try it</a>
         <a class="sec" href="#video" id="nav-video" hidden>Video</a>
         <a class="sec" href="#premium">Free &amp; Premium</a>
         <a class="sec" href="#support">Support</a>
@@ -356,68 +312,6 @@
           <button class="car-btn" id="next" aria-label="Next screenshot"><span class="material-symbols-outlined">chevron_right</span></button>
         </div>
         <p class="car-caption" id="caption" aria-live="polite"></p>
-      </div>
-    </section>
-
-    <section class="block" id="try">
-      <div class="container">
-        <div class="head reveal">
-          <p class="eyebrow">Try it right here</p>
-          <h2>Make some noise before you install</h2>
-          <p>A tiny taste of Tabba, running in your browser. Turn your sound on and tap around.</p>
-        </div>
-        <div class="try-grid">
-
-          <div class="gcard demo reveal" id="metro">
-            <h3>Metronome</h3>
-            <p class="sub">Tap tempo, time signatures, and an accented first beat.</p>
-            <div class="bpm-wrap">
-              <div class="dots-beat" id="beats" aria-hidden="true"></div>
-              <div class="bpm" id="bpm" aria-live="off">120</div>
-              <div class="bpm-label">Beats per minute</div>
-            </div>
-            <div class="row">
-              <button class="chip-btn" data-d="-5" aria-label="Decrease tempo by 5">-5</button>
-              <button class="chip-btn" data-d="-1" aria-label="Decrease tempo by 1">-1</button>
-              <button class="chip-btn" data-d="1" aria-label="Increase tempo by 1">+1</button>
-              <button class="chip-btn" data-d="5" aria-label="Increase tempo by 5">+5</button>
-            </div>
-            <input type="range" id="slider" min="40" max="220" value="120" aria-label="Tempo in beats per minute" />
-            <div class="row">
-              <button class="chip-btn tap" id="tap"><span class="material-symbols-outlined">touch_app</span>Tap tempo</button>
-              <button class="round" id="mplay" aria-label="Start metronome"><span class="material-symbols-outlined">play_arrow</span></button>
-              <label class="inline">Time
-                <select id="sig" aria-label="Time signature">
-                  <option value="4">4/4</option>
-                  <option value="3">3/4</option>
-                  <option value="6">6/8</option>
-                </select>
-              </label>
-            </div>
-            <p class="noaudio" id="noaudio" hidden>Your browser can't play sound here, but the app can!</p>
-          </div>
-
-          <div class="gcard demo reveal" id="tabdemo">
-            <h3>Write a riff</h3>
-            <p class="sub">Pick a fret, tap the tab to place notes, then press play to hear it.</p>
-            <div class="fretbar" id="frets" role="group" aria-label="Fret number to place"><span class="lbl">Fret</span></div>
-            <div class="tab-scroll"><div class="tab" id="tab" role="group" aria-label="Guitar tab, 6 strings by 16 steps"></div></div>
-            <div class="demo-actions">
-              <button class="btn primary sm" id="tplay"><span class="material-symbols-outlined">play_arrow</span><span id="tplay-label">Play</span></button>
-              <button class="btn secondary sm" id="treset"><span class="material-symbols-outlined">replay</span>Reset riff</button>
-              <button class="btn secondary sm" id="tclear"><span class="material-symbols-outlined">delete</span>Clear</button>
-            </div>
-            <p class="demo-note">Plays at the metronome's tempo (<span id="tbpm">120</span> BPM). Tap a note again to remove it.</p>
-          </div>
-
-        </div>
-        <div class="try-cta reveal">
-          <p>That's just a taste. Write your own tabs, save them and share them for free.</p>
-          <a data-play class="btn primary" href="https://play.google.com/store/apps/details?id=com.zbcdevo.tabba" target="_blank" rel="noopener">
-            <span class="material-symbols-outlined">android</span>
-            Download for Android
-          </a>
-        </div>
       </div>
     </section>
 
@@ -684,144 +578,6 @@
         $('#video').hidden = false; $('#nav-video').hidden = false;
       }).catch(function () {});
     }
-
-    /* ---- Web Audio helpers ---- */
-    var AC = window.AudioContext || window.webkitAudioContext, ctx = null;
-    function audio() {
-      if (!AC) { $('#noaudio').hidden = false; return null; }
-      if (!ctx) ctx = new AC();
-      if (ctx.state === 'suspended') ctx.resume();
-      return ctx;
-    }
-    function click(t, accent) {
-      var o = ctx.createOscillator(), g = ctx.createGain();
-      o.type = 'square'; o.frequency.value = accent ? 1600 : 1000;
-      g.gain.setValueAtTime(0.0001, t);
-      g.gain.exponentialRampToValueAtTime(accent ? 0.3 : 0.18, t + 0.002);
-      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.05);
-      o.connect(g); g.connect(ctx.destination); o.start(t); o.stop(t + 0.06);
-    }
-    function pluck(freq, t) {
-      var o = ctx.createOscillator(), f = ctx.createBiquadFilter(), g = ctx.createGain();
-      o.type = 'sawtooth'; o.frequency.value = freq;
-      f.type = 'lowpass'; f.frequency.setValueAtTime(3400, t); f.frequency.exponentialRampToValueAtTime(450, t + 0.7);
-      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.16, t + 0.008); g.gain.exponentialRampToValueAtTime(0.0001, t + 1.1);
-      o.connect(f); f.connect(g); g.connect(ctx.destination); o.start(t); o.stop(t + 1.15);
-    }
-    // Look-ahead scheduler: plays steps slightly ahead of time, and reports them to the UI when they sound.
-    function makeLoop(stepSec, play, show) {
-      var timer, raf, next, idx, q = [], on = false;
-      function tick() { while (next < ctx.currentTime + 0.12) { play(idx, next); q.push({ t: next, i: idx }); next += stepSec(); idx++; } }
-      function draw() { if (!on) return; while (q.length && q[0].t <= ctx.currentTime) show(q.shift().i); raf = requestAnimationFrame(draw); }
-      return {
-        start: function () { if (!audio()) return false; on = true; idx = 0; q = []; next = ctx.currentTime + 0.06; tick(); timer = setInterval(tick, 25); raf = requestAnimationFrame(draw); return true; },
-        stop: function () { on = false; clearInterval(timer); cancelAnimationFrame(raf); q = []; show(-1); },
-        isOn: function () { return on; }
-      };
-    }
-
-    /* ---- Shared tempo ---- */
-    var bpm = 120, bpmEl = $('#bpm'), slider = $('#slider'), tbpm = $('#tbpm');
-    function setBpm(v) { bpm = Math.max(40, Math.min(220, Math.round(v))); bpmEl.textContent = bpm; slider.value = bpm; tbpm.textContent = bpm; }
-    $$('[data-d]').forEach(function (b) { b.addEventListener('click', function () { setBpm(bpm + parseInt(b.dataset.d, 10)); }); });
-    slider.addEventListener('input', function () { setBpm(parseInt(slider.value, 10)); });
-    var taps = [];
-    $('#tap').addEventListener('click', function () {
-      var now = Date.now();
-      if (taps.length && now - taps[taps.length - 1] > 2000) taps = [];
-      taps.push(now); if (taps.length > 5) taps.shift();
-      if (taps.length > 1) setBpm(60000 / ((taps[taps.length - 1] - taps[0]) / (taps.length - 1)));
-    });
-
-    /* ---- Metronome ---- */
-    var beats = 4, beatsEl = $('#beats'), mbtn = $('#mplay'), sig = $('#sig');
-    function buildBeats() {
-      beatsEl.innerHTML = '';
-      for (var i = 0; i < beats; i++) { var d = document.createElement('span'); d.className = 'beat'; beatsEl.appendChild(d); }
-    }
-    buildBeats();
-    var metro = makeLoop(
-      function () { return beats === 6 ? 60 / bpm / 2 : 60 / bpm; },
-      function (i, t) { click(t, i % beats === 0); },
-      function (i) {
-        $$('.beat', beatsEl).forEach(function (d, k) { var on = i >= 0 && k === i % beats; d.className = 'beat' + (on ? ' on' : '') + (on && k === 0 ? ' first' : ''); });
-      }
-    );
-    function setMetroUi(on) {
-      mbtn.classList.toggle('stop', on);
-      mbtn.setAttribute('aria-label', on ? 'Stop metronome' : 'Start metronome');
-      mbtn.innerHTML = '<span class="material-symbols-outlined">' + (on ? 'stop' : 'play_arrow') + '</span>';
-    }
-    mbtn.addEventListener('click', function () {
-      if (metro.isOn()) { metro.stop(); setMetroUi(false); return; }
-      stopTab();
-      if (metro.start()) setMetroUi(true);
-    });
-    sig.addEventListener('change', function () { beats = parseInt(sig.value, 10); buildBeats(); });
-
-    /* ---- Mini tab ---- */
-    var STR = ['e', 'B', 'G', 'D', 'A', 'E'], MIDI = [64, 59, 55, 50, 45, 40], COLS = 16;
-    var RIFF = { // string index -> { step: fret }
-      3: { 0: 2, 3: 5, 6: 7, 12: 2 }, 4: { 0: 2, 3: 5, 6: 7, 12: 2 }, 5: { 0: 0, 3: 3, 6: 5, 8: 3, 10: 5, 12: 0, 14: 0 }
-    };
-    var grid = [], tabEl = $('#tab'), cells = [], fret = 0, fretsEl = $('#frets');
-    function fillRiff() {
-      grid = STR.map(function () { return new Array(COLS).fill(null); });
-      Object.keys(RIFF).forEach(function (s) { Object.keys(RIFF[s]).forEach(function (c) { grid[s][c] = RIFF[s][c]; }); });
-    }
-    function freq(s, f) { return 440 * Math.pow(2, (MIDI[s] + f - 69) / 12); }
-    function paint(s, c) {
-      var b = cells[s][c], v = grid[s][c];
-      b.className = 'cell' + (v !== null ? ' has' : '');
-      b.firstChild.textContent = v !== null ? v : '–';
-      b.setAttribute('aria-label', 'String ' + STR[s] + ', step ' + (c + 1) + ', ' + (v !== null ? 'fret ' + v : 'empty'));
-    }
-    STR.forEach(function (name, s) {
-      var l = document.createElement('div'); l.className = 'slbl'; l.textContent = name; l.setAttribute('aria-hidden', 'true'); tabEl.appendChild(l);
-      cells[s] = [];
-      for (var c = 0; c < COLS; c++) {
-        var b = document.createElement('button'); b.type = 'button'; b.dataset.s = s; b.dataset.c = c;
-        b.appendChild(document.createElement('span'));
-        tabEl.appendChild(b); cells[s][c] = b;
-      }
-    });
-    function paintAll() { for (var s = 0; s < STR.length; s++) for (var c = 0; c < COLS; c++) paint(s, c); }
-    fillRiff(); paintAll();
-    tabEl.addEventListener('click', function (e) {
-      var b = e.target.closest('.cell'); if (!b) return;
-      var s = +b.dataset.s, c = +b.dataset.c;
-      grid[s][c] = grid[s][c] === fret ? null : fret;
-      paint(s, c);
-      if (grid[s][c] !== null && audio()) pluck(freq(s, fret), ctx.currentTime + 0.01);
-    });
-    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12].forEach(function (n) {
-      var b = document.createElement('button'); b.type = 'button'; b.className = 'chip-btn'; b.textContent = n; b.setAttribute('aria-label', 'Fret ' + n);
-      b.setAttribute('aria-pressed', n === 0 ? 'true' : 'false');
-      b.addEventListener('click', function () {
-        fret = n; $$('.chip-btn', fretsEl).forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-      });
-      fretsEl.appendChild(b);
-    });
-    var tbtn = $('#tplay'), tlabel = $('#tplay-label');
-    var tabLoop = makeLoop(
-      function () { return 60 / bpm / 2; },
-      function (i, t) { var c = i % COLS; for (var s = 0; s < STR.length; s++) if (grid[s][c] !== null) pluck(freq(s, grid[s][c]), t); },
-      function (i) {
-        cells.forEach(function (row) { row.forEach(function (b, c) { b.classList.toggle('play', i >= 0 && c === i % COLS); }); });
-      }
-    );
-    function setTabUi(on) {
-      tlabel.textContent = on ? 'Stop' : 'Play';
-      tbtn.firstChild.textContent = on ? 'stop' : 'play_arrow';
-    }
-    function stopTab() { if (tabLoop.isOn()) { tabLoop.stop(); setTabUi(false); } }
-    tbtn.addEventListener('click', function () {
-      if (tabLoop.isOn()) { stopTab(); return; }
-      if (metro.isOn()) { metro.stop(); setMetroUi(false); }
-      if (tabLoop.start()) setTabUi(true);
-    });
-    $('#treset').addEventListener('click', function () { fillRiff(); paintAll(); });
-    $('#tclear').addEventListener('click', function () { grid = STR.map(function () { return new Array(COLS).fill(null); }); paintAll(); });
   })();
   </script>
 </body>
